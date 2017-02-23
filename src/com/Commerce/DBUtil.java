@@ -2,6 +2,8 @@ package com.Commerce;
 
 import java.sql.*;
 
+import com.mahmod.UserDTO;
+
 public class DBUtil {
 
 	private  String driver;
@@ -95,8 +97,28 @@ public class DBUtil {
 			        return status;  
 			    }  
 
+		
+        // Login user DTO    Added by Mahmoud :)
+		 public UserDTO getRecord(String name, String password, String email){  
+		        UserDTO s=null;  
+		        try{  
+		    	   	Connection conn = getConnection();
+		            PreparedStatement ps=conn.prepareStatement("select * from usertable where name=? and password =? and email=?");  
+		            ps.setString(1,name );
+		            ps.setString(2,password );
+		            ps.setString(3,email );
 
-
+		            ResultSet rs=ps.executeQuery();  
+		            while(rs.next()){  
+		                s=new UserDTO();  
+		                s.setId(rs.getInt("id"));  
+		                s.setName(rs.getString("name"));  
+		                s.setPassword(rs.getString("password"));  
+		                s.setEmail(rs.getString("email"));  
+		            }  
+		        }catch(Exception e){System.out.println(e);}  
+		        return s;  
+		    }  
 
 
 
