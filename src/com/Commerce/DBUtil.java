@@ -8,6 +8,7 @@ public class DBUtil {
 	private  String connectionUrl;
 	private  String userName;
 	private  String password;
+	private int executeUpdate;
 	
 	//Constractor for initialize DB Connection
 	DBUtil(String driver,String connectionUrl,String userName,String password){
@@ -45,21 +46,24 @@ public class DBUtil {
 			  return  resultSet;
 		 }
 	 // Insert data
-	    public  int insertData(String sql,String[]values){  
+	    public  int insertData(String sql){  
 		        int status=0;  
 		        try{  
 		            Connection con=getConnection();     
-		            PreparedStatement ps=con.prepareStatement(sql);
-		            
-		            for (int i = 0; i < values.length; i++)
-		            {
-			        	  ps.setString(i+1,values[i]);                                   	  
-				    }
-		            status=ps.executeUpdate();
-		            con.close();  
+//		            PreparedStatement ps=con.prepareStatement(sql);
+//		            
+//		            for (int i = 0; i < values.length; i++)
+//		            {
+//			        	  ps.setString(i+1,values[i]);                                   	  
+//				    }
+//		            status=ps.executeUpdate();
+//		            con.close();
+		            Statement stat=con.createStatement();
+					 executeUpdate = stat.executeUpdate(sql);
+
 		        }catch(Exception ex){ex.printStackTrace();}  
 		          
-		        return status;  
+		        return executeUpdate;  
 		    } 
 
 	    // Update 
