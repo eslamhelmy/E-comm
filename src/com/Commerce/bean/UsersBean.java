@@ -1,11 +1,15 @@
 package com.Commerce.bean;
 
+import java.io.Serializable;
 import java.sql.Date;
-public class UserBean {
+public class UsersBean implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//attributes
 	private int id;
-	private String userName;
 	private String password;
 	private String fullName;
 	private Date dateOfBirth;
@@ -13,9 +17,9 @@ public class UserBean {
 	private String address;
 	private String job;
 	private String creditNumber;
-	private boolean status;
+	private String status;
 	private boolean isAdmin;
-	
+	private boolean valid;
 
 	//setter and getter
 	public int getId() {
@@ -42,14 +46,6 @@ public class UserBean {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	
-	
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 	public String getPassword() {
 		return password;
 	}
@@ -74,10 +70,10 @@ public class UserBean {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public boolean getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	public String getAddress() {
@@ -86,6 +82,11 @@ public class UserBean {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-		
+	public boolean isValid() {
+		return valid;
+	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
 	
 }

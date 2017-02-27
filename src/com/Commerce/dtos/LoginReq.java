@@ -1,6 +1,8 @@
 package com.Commerce.dtos;
 
-public class LoginReq {
+
+
+public class LoginReq{
 	
 	private String email;
 	private String password;
