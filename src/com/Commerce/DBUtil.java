@@ -11,7 +11,7 @@ public class DBUtil {
 	private int executeUpdate;
 	
 	//Constractor for initialize DB Connection
-	DBUtil(String driver,String connectionUrl,String userName,String password){
+	public DBUtil(String driver,String connectionUrl,String userName,String password){
 		
 		this.driver=driver;
 		this.connectionUrl=connectionUrl;
