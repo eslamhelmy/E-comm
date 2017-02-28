@@ -1,11 +1,15 @@
 package com.Commerce.controller;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Random;
+
+import java.io.*;
+
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -19,12 +23,10 @@ import com.Commerce.bean.UserBean;
 import com.Commerce.doas.UserDao;
 import com.sun.glass.ui.Pixels.Format;
 
-/**
- * Servlet implementation class Uservlet
- */
 @WebServlet("/Uservlet")
 public class Uservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -47,26 +49,21 @@ public class Uservlet extends HttpServlet {
     	return n;
     	
     }
-	
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+			 
+			
+ 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-				PrintWriter out=response.getWriter(); 
-				UserBean userBean= new UserBean();
-				SimpleDateFormat format = new SimpleDateFormat("yy-mm-dd");   
-				 double credit;
-				 AdminEnum adminenum = null;
-				 
-				 String name=request.getParameter("uname");
+		PrintWriter out=response.getWriter(); 
+		UserBean userBean= new UserBean();  
+		 AdminEnum adminenum = null;
+
+				 String name=request.getParameter("uname");  
 				 String password=request.getParameter("psw");
 				 String birthDate=request.getParameter("bdate");
 				 String eMail=request.getParameter("email");
 				 String job=request.getParameter("job");
 				 String creditNum=request.getParameter("cnum");
-				 credit=Double.parseDouble(creditNum);
+				 double credit=Double.parseDouble(creditNum);
 				
 				userBean.setFullName(name);
 				userBean.setPassword(password);
