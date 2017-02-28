@@ -9,7 +9,7 @@
 <body>
 
 <form action="Login.html">
-  <input type="submit" value="Login">
+ <input type="submit" value="Login">
 </form>
 <br><br>
 <form action="register.html">

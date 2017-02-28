@@ -6,11 +6,11 @@ import com.Commerce.dtos.*;
 
 import java.sql.*;
 
-public class UserDao {
+public class UserDao implements UserInterface{
 
-	private Connection con=null;
+	private Connection con;
 	private ResultSet resultSet;
-	
+	private PreparedStatement ps;
 	public  Connection getConnection(){  
 	      
 	    try{  
@@ -23,7 +23,7 @@ public class UserDao {
 	public  int save(UserBean userBean){  
 	    int status=0;  
 	    try{  
-	        Connection con=getConnection();  
+	         con=getConnection();  
 	        PreparedStatement ps=con.prepareStatement(  
 	"insert into Users values(?,?,?,?,?,?,?,?)");
 
@@ -81,7 +81,7 @@ public class UserDao {
 	public LoginRes login(LoginReq lr){
 		LoginRes lrs=new LoginRes();
 		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "Root");
-//    	con = database.getConnection();
+    	con = database.getConnection();
     	
 			resultSet = database.selectData("select * from ecommerce.users");
 			try {
@@ -101,6 +101,29 @@ public class UserDao {
 		
 		
 	}
+	public boolean LoginValidate(LoginReq loginrequest){
+		boolean status=false;
+		con=getConnection();  
+		try {
+			String email=loginrequest.getEmail();
+			String password=loginrequest.getPassword();		
+			
+		    ps=con.prepareStatement( "select * from Users where Email = ? and password= ?");
+			ps.setString(1,email);	
+			ps.setString(2,password);
+			
+			ResultSet rs=ps.executeQuery();  
+			status=rs.next();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   
+		
+		return status;
+	}
+	
 	
 	
 	
