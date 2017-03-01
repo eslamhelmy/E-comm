@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.jasper.tagplugins.jstl.core.Out;
 
+import com.Commerce.bean.UserBean;
 import com.Commerce.doas.UserDao;
 import com.Commerce.dtos.LoginReq;
 import com.Commerce.dtos.LoginRes;
@@ -28,60 +29,10 @@ public class LoginServ extends HttpServlet {
 	private boolean checkEmail;
 	private PrintWriter out;
 	private LoginRes loginRes;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServ() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    /**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
-	}
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
-	
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	private UserBean userbean;
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		/*	//writer response
-		writer = response.getWriter();
-		LoginReq lr=new LoginReq();
-		
-		//receive parameters
-		email = request.getParameter("email");
-		password = request.getParameter("password");
-		
-		//check validation and put in DTO Request
-		UserValidate check=new UserValidate();
-		checkEmail = check.checkEmail(email);
-		if(checkEmail==true){
-			lr.setEmail(email);	
-			lr.setPassword(password);
-		}
-		else{
-			while(checkEmail==false){
-				break;
-			}
-		}
-		//call login method
-		
-		
-		loginRes = new UserDao().login(lr);
-		writer.println("Welcome"+loginRes.getUserName());
-			*/
-		
 		/////////////////////////////////////////////////
 		out = response.getWriter();
 		LoginReq lr=new LoginReq();
@@ -91,15 +42,24 @@ public class LoginServ extends HttpServlet {
 		lr.setEmail(email);	
 		lr.setPassword(password);
 		UserDao ud=new UserDao();
-		boolean statusLogin=ud.LoginValidate(lr);
-		if(statusLogin){
-			out.print("Welcome");
-			
-		}else
-		{
-			out.println("Not register");
+		userbean = ud.login(lr);
+		if(userbean.getFullName()!=null){
+			request.getSession().setAttribute("userData", userbean);
+			response.sendRedirect("Welcome");
 		}
-		
+		else{
+			out.println("Not Registered");
+		}
+//		boolean statusLogin=ud.LoginValidate(lr);
+//		if(statusLogin){
+//			
+//			out.print("Welcome");
+//			
+//		}else
+//		{
+//			out.println("Not register");
+//		}
+//		
 		/////////////////////////////////////////////////////
 	}
 

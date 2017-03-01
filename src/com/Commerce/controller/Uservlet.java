@@ -28,21 +28,7 @@ public class Uservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-	
-	@Override
-	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
-		super.init(config);
-	}
-    public Uservlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-    public int randomNum(){
+     public int randomNum(){
     	Random rand = new Random();
     	int  n = rand.nextInt(1000) + 1;
     
@@ -78,7 +64,9 @@ public class Uservlet extends HttpServlet {
 				int status=userDao.save(userBean);
 				
 				if(status>0){
+					request.getSession(true).setAttribute("userData", userBean);
 					out.print("<p>Record saved successfully!</p>");
+					request.getRequestDispatcher("viewProfile.html").include(request, response);
 				}
 			  else{  
 				  
