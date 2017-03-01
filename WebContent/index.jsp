@@ -15,5 +15,9 @@
 <form action="register.html">
   <input type="submit" value="Register">
 </form>
+<br><br>
+<form action="productsView.jsp">
+  <input type="submit" value="view product">
+</form>
 </body>
 </html>
