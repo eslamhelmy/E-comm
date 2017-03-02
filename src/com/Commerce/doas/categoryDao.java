@@ -2,7 +2,10 @@ package com.Commerce.doas;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
+import com.Commerce.bean.ProductBean;
 import com.Commerce.bean.categoryBean;
 
 public class categoryDao {
@@ -27,7 +30,27 @@ public class categoryDao {
 	}  
 	
 	
-	
+	public ArrayList<categoryBean> getCategoryList() {
+		
+		ArrayList<categoryBean> list=new ArrayList<categoryBean>();  
+        
+        try{  
+            Connection con=conMange.getConnection();  
+            PreparedStatement ps=con.prepareStatement("select * from categories");  
+            ResultSet rs=ps.executeQuery();  
+            while(rs.next()){  
+            	categoryBean category=new categoryBean();  
+            	category.setCategoryId(rs.getInt(1));  
+            	category.setCategoryName(rs.getString(2));
+            	category.setCategoryDescription(rs.getString(3));
+            	
+                list.add(category);  
+            }  
+            con.close();  
+        }catch(Exception e){e.printStackTrace();}  
+          
+        return list;  
+	}
 	
 
 }

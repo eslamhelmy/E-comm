@@ -18,14 +18,13 @@
 <form class="formLogin" action="addCategoryServlet" >
 
   <div class="container">
-    <label><b>  Name </b></label>
+       <label><b>  Name </b></label>
     <input type="text" placeholder="Enter Name Category" name="categName" required>
 
     <label><b> Description</b></label>
     <input type="text" placeholder="Enter category Description" name="categDesc" required>
         
-    <button type="submit">Insert </button>
-    
+    <button type="submit">Insert </button>    
   </div>
 </form>
 </center>

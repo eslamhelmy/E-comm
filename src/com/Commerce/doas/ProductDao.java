@@ -4,11 +4,14 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import com.Commerce.bean.ProductBean;
+import com.Commerce.bean.UserBean;
 
 public class ProductDao implements ProductInterface{
 
 	ConnectionManager conMange=new ConnectionManager();
-	@Override
+	private Connection con;
+	
+	
 	public ArrayList<ProductBean> getProductList() {
 	
 		ArrayList<ProductBean> list=new ArrayList<ProductBean>();  
@@ -41,9 +44,27 @@ public class ProductDao implements ProductInterface{
 		return null;
 	}
 
-	@Override
-	public void addProduct(ProductBean product) {
-		// TODO Auto-generated method stub
+
+	public int addProduct(ProductBean product) {
+		
+		    int status=0;  
+		    try{  
+		         con=conMange.getConnection();  
+		        PreparedStatement ps=con.prepareStatement(  
+		"insert into products(name,price,Quantity,ImagePath,In_stock,Description,category_id) values(?,?,?,?,?,?,?)");
+
+		        ps.setString(1,product.getProductName());
+		        ps.setFloat(2,product.getPrice()); 
+		        ps.setInt(3, product.getQuantity());
+		        ps.setString(4,product.getImgPath());
+		        ps.setString(5,product.getInStock());
+		        ps.setString(6, product.getDescription());
+		        ps.setInt(7,product.getCategoryId());
+		        
+		        status=ps.executeUpdate();  
+		        con.close();  
+		    }catch(Exception e){System.out.println(e);}  
+		    return status;  
 		
 	}
 

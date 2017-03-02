@@ -9,7 +9,7 @@ public interface ProductInterface {
 	
 	ProductBean getProductById (int id);
 	
-    void addProduct(ProductBean product);
+    int addProduct(ProductBean product);
     
     void editProduct(ProductBean product);
     
