@@ -50,17 +50,6 @@ public class LoginServ extends HttpServlet {
 		else{
 			out.println("Not Registered");
 		}
-//		boolean statusLogin=ud.LoginValidate(lr);
-//		if(statusLogin){
-//			
-//			out.print("Welcome");
-//			
-//		}else
-//		{
-//			out.println("Not register");
-//		}
-//		
-		/////////////////////////////////////////////////////
 	}
 
 }

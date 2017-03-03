@@ -14,6 +14,7 @@ public class UserDao implements UserInterface{
 	private PreparedStatement ps;
 
 	ConnectionManager connManager=new ConnectionManager();
+	private int executeUpdate;
 
 
 	public  int save(UserBean userBean){  
@@ -44,9 +45,9 @@ public class UserDao implements UserInterface{
 	public UserBean login(LoginReq lr){
 		
 		UserBean userbean=new UserBean();
-		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "admin");
+		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "Root");
     	con = database.getConnection();
-    	
+
 			ResultSet resultSet = database.selectData("select * from ecommerce.users");
 			try {
 				while(resultSet.next()){
@@ -95,6 +96,28 @@ public class UserDao implements UserInterface{
 		}   
 		
 		return status;
+	}
+
+
+
+	public int updateUser(RegisterReq updateData) {
+		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "Root");
+    	con = database.getConnection();
+    	try {
+			PreparedStatement p=con.prepareStatement("update ecommerce.users set Full_Name=?,Email=?,Password=?,Date_of_birth=?,job=?,credit_card=? where ID=?");
+			p.setString(1, updateData.getFullName());
+			p.setString(2, updateData.getEmail());
+			p.setString(3, updateData.getPassword());
+			p.setString(4, updateData.getDateOfBirth());
+			p.setString(5, updateData.getJob());
+			p.setDouble(6, updateData.getCredit());
+			p.setInt(7, updateData.getId());
+			executeUpdate = p.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return executeUpdate;
 	}
 	
 	
