@@ -4,7 +4,7 @@ public class ProductBean {
 	
 	private int productId;
 	private String productName;
-	private float price;
+	private double price;
 	private int quantity;
 	private String imgPath;
 	private String inStock;
@@ -24,10 +24,10 @@ public class ProductBean {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public int getQuantity() {

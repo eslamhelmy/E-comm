@@ -54,7 +54,7 @@ public class ProductDao implements ProductInterface{
 		"insert into products(name,price,Quantity,ImagePath,In_stock,Description,category_id) values(?,?,?,?,?,?,?)");
 
 		        ps.setString(1,product.getProductName());
-		        ps.setFloat(2,product.getPrice()); 
+		        ps.setFloat(2,(float)product.getPrice()); 
 		        ps.setInt(3, product.getQuantity());
 		        ps.setString(4,product.getImgPath());
 		        ps.setString(5,product.getInStock());

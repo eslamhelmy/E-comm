@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.Commerce.bean.ProductBean;
 import com.Commerce.doas.ProductDao;
+import java.io.OutputStream;
 
 
 /**
@@ -42,6 +43,8 @@ public class AddProductServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    final static String IMAGE_RESOURCE_PATH = "/WebContent/imgs";
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		PrintWriter out=response.getWriter();
@@ -60,6 +63,7 @@ public class AddProductServlet extends HttpServlet {
 		
 		 //read image
 		try{
+			
 		      f = new File(img); //image file path
 		      image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		      image = ImageIO.read(f);
@@ -68,10 +72,21 @@ public class AddProductServlet extends HttpServlet {
 		      System.out.println("Error: "+e);
 		    }
 		 //write image
-	    String name=nameProduct;
+	    String name=nameProduct+".jpg";
+		File directory=null;
 	    try{
-	      f = new File("/E-Commerce/WebContent/img/"+name+".jpg");  //output file path
-	      ImageIO.write(image, "jpg", f);
+	    	//String filePath = getServletContext().getInitParameter("file-upload"); 
+		   
+	    	//File fi = new File(filePath+nameProduct);
+	    	
+	    	final  String IMAGE_RESOURCE_PATH = "/WebContent/imgs";
+	    	String directoryPath = 
+	    	        getServletContext().getRealPath(IMAGE_RESOURCE_PATH + "/" + name);
+	    	
+	    	 directory = new File(directoryPath);
+	    	System.out.println(directory.mkdirs());
+
+	      ImageIO.write(image, "jpg",directory );
 	      System.out.println("Writing complete.");
 	    }catch(IOException e){
 	      System.out.println("Error: "+e);
@@ -83,13 +98,10 @@ public class AddProductServlet extends HttpServlet {
 		String descrption=request.getParameter("productDesc");
 		int cateID=Integer.parseInt(request.getParameter("categId"));
 		
-		
-		
-		
 		product.setProductName(nameProduct);
 		product.setPrice(price);
 		product.setQuantity(quant);
-		product.setImgPath(f.toString());
+		product.setImgPath(directory.toString());
 		product.setInStock(inStock);
 		product.setDescription(descrption);
 		product.setCategoryId(cateID);
@@ -104,9 +116,6 @@ public class AddProductServlet extends HttpServlet {
          out.println("Sorry! unable to add Category");  
           
      } 
-		
-		
-		
 		
 		
 	}

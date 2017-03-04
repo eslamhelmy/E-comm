@@ -45,7 +45,7 @@ public class UserDao implements UserInterface{
 	public UserBean login(LoginReq lr){
 		
 		UserBean userbean=new UserBean();
-		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "Root");
+		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "admin");
     	con = database.getConnection();
 
 			ResultSet resultSet = database.selectData("select * from ecommerce.users");
@@ -101,7 +101,7 @@ public class UserDao implements UserInterface{
 
 
 	public int updateUser(RegisterReq updateData) {
-		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "Root");
+		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "admin");
     	con = database.getConnection();
     	try {
 			PreparedStatement p=con.prepareStatement("update ecommerce.users set Full_Name=?,Email=?,Password=?,Date_of_birth=?,job=?,credit_card=? where ID=?");

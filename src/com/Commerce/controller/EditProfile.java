@@ -22,7 +22,7 @@ public class EditProfile extends HttpServlet {
 	private String dateBirth;
 	private String job;
 	private int updateUser=0;
-	private UserBean userData;
+	private RegisterReq userData;
 	private int id;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,20 +39,22 @@ public class EditProfile extends HttpServlet {
 //		ConnectionManager.getConnection();
 		//set into DTO RegisterReq
 		RegisterReq updateData=new RegisterReq();
+		
 		updateData.setFullName(fullName);
 		updateData.setEmail(email);
 		updateData.setPassword(password);
 		updateData.setDateOfBirth(dateBirth);
 		updateData.setCredit(Double.parseDouble(creditCard));
 		updateData.setJob(job);
-		userData =(UserBean) request.getSession(false).getAttribute("userData");
+		userData =(RegisterReq) request.getSession(false).getAttribute("userData");
 		id = userData.getId();
 		updateData.setId(id);
+		
 		//updateData
 		UserDao us=new UserDao();
 		updateUser = us.updateUser(updateData);
 //		response.getWriter().println(updateUser);
-		if(updateUser>0){
+		if(updateUser==0){
 //			request.getSession().removeAttribute("userData");
 			request.getSession(true).setAttribute("userData", updateData);
 			response.sendRedirect("viewProfile.jsp");

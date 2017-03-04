@@ -14,22 +14,22 @@ if(us!=null){
 %>	
 
 <h1>Mr <%=us.getFullName() %> Profile</h1>
-<form action="" >
+<form action="editProfile.jsp" >
 <table width="100%" height="100%" cellpadding="5" cellspacing="5" border="1">
 <tr>
 <th align="center">Name</th>
 <td><%=us.getFullName() %></td>
-<td><input type='text' name='name' value='<%=us.getFullName() %>'/></td>
+
 </tr>
 <tr>
 <th align="center">Email</th>
 <td><%=us.getEmail() %></td>
-<td><input type='text' name='name' value='<%=us.getEmail() %>'/></td>
+
 </tr>
 <tr>
 <th align="center">Password</th>
 <td><%=us.getPassword() %></td>
-<td><input type='text' name='name' value='<%=us.getPassword() %>'/></td>
+
 </tr>
 <tr>
 <th align="center">Credit Card</th>
@@ -43,6 +43,10 @@ if(us!=null){
 <tr>
 <th align="center">Job</th>
 <td><%=us.getJob() %></td>
+</tr>
+<tr>
+<td></td>
+<td><input type="submit" value="edit">
 </tr>
 </table>	
 </form>
