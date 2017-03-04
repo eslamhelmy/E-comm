@@ -33,28 +33,22 @@ public class EditProfile extends HttpServlet {
 		creditCard = request.getParameter("creditcard");
 		dateBirth = request.getParameter("dateofbirth");
 		job = request.getParameter("job");
-		//print data
-//		response.getWriter().print(fullName+" "+job);
-		//make connection
-//		ConnectionManager.getConnection();
-		//set into DTO RegisterReq
-		RegisterReq updateData=new RegisterReq();
-		updateData.setFullName(fullName);
-		updateData.setEmail(email);
-		updateData.setPassword(password);
-		updateData.setDateOfBirth(dateBirth);
-		updateData.setCredit(Double.parseDouble(creditCard));
-		updateData.setJob(job);
 		userData =(UserBean) request.getSession(false).getAttribute("userData");
 		id = userData.getId();
-		updateData.setId(id);
-		//updateData
+		UserBean user=new UserBean();
+		user.setFullName(fullName);
+		user.setEmail(email);
+		user.setPassword(password);
+		user.setCreditNumber(Double.parseDouble(creditCard));
+		user.setDateOfBirth(dateBirth);
+		user.setJob(job);
+		user.setId(id);
 		UserDao us=new UserDao();
-		updateUser = us.updateUser(updateData);
-//		response.getWriter().println(updateUser);
+		updateUser = us.updateUser(user);
+
 		if(updateUser>0){
-//			request.getSession().removeAttribute("userData");
-			request.getSession(true).setAttribute("userData", updateData);
+
+			request.getSession(true).setAttribute("userData", user);
 			response.sendRedirect("viewProfile.jsp");
 		}
 		else{
