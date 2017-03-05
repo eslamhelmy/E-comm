@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
-<title>Insert title here</title>
+<title>Product View</title>
 </head>
 <body>
 <h1>All Product</h1>
@@ -22,12 +22,14 @@ ProductDao productdao=new ProductDao();
  request.setAttribute("products",list);
 %>
 
+
 <table border="5">
 	<tr>
 		<td>Name</td>
 		<td>price</td>
 		<td>Image</td>
 		<td>Description</td>
+		<td>Action</td>
 	</tr>
 
 
@@ -37,6 +39,12 @@ ProductDao productdao=new ProductDao();
           <td><c:out value="${current.price}" /></td>
           <td><img width="100" height="100" src="<c:out value="${current.imgPath}" />"></img></td>
           <td><c:out value="${current.description}" /></td>
+          <td>
+        	  <form action="AddToShoppingCart">
+    		  <input type="hidden" name="idProduct" value="${current.productId}" />
+   		 	  <input type="submit" name="details" value="Add to cart" />
+			  </form>
+         </td>
         </tr>
  </c:forEach>
 

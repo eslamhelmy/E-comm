@@ -23,6 +23,8 @@ public class Welcome extends HttpServlet {
 		if(userData!=null){
 			writer.println("welcome   "+userData.getFullName());
 			request.getRequestDispatcher("viewProfile.html").include(request, response);
+			request.getRequestDispatcher("productsView.jsp").include(request, response);
+
 		}
 	}
 

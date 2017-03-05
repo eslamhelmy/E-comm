@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import com.Commerce.bean.ProductBean;
-import com.Commerce.bean.UserBean;
 
 public class ProductDao implements ProductInterface{
 
@@ -40,8 +39,28 @@ public class ProductDao implements ProductInterface{
 
 	@Override
 	public ProductBean getProductById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		ProductBean product=new ProductBean();  
+          
+	        try{  
+	             con=conMange.getConnection();  
+	            PreparedStatement ps=con.prepareStatement("select * from products where product_id=?");  
+	            ps.setInt(1,id);  
+	            ResultSet rs=ps.executeQuery();  
+	            if(rs.next()){  
+	            	product.setProductId(rs.getInt(1));
+	            	product.setProductName(rs.getString(2));
+	            	product.setPrice(rs.getDouble(3));
+	            	product.setQuantity(rs.getInt(4));
+	            	product.setImgPath(rs.getString(5));
+	            	product.setInStock(rs.getString(6));
+	            	product.setDescription(rs.getString(7));
+	            	product.setCategoryId(rs.getInt(8));
+	            	
+	            }  
+	            con.close();  
+	        }catch(Exception ex){ex.printStackTrace();}  
+	          
+	        return product;  
 	}
 
 

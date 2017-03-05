@@ -66,7 +66,10 @@ public class Uservlet extends HttpServlet {
 				if(status>0){
 					request.getSession(true).setAttribute("userData", userBean);
 					out.print("<p>Record saved successfully!</p>");
+					
+					response.sendRedirect("Welcome");
 					request.getRequestDispatcher("viewProfile.html").include(request, response);
+					
 				}
 			  else{  
 				  

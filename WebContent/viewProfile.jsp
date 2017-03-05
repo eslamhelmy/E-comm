@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
-<title>Insert title here</title>
+<title>View Profile </title>
 </head>
 <body bgcolor="powderblue">
 <%@ page import="com.Commerce.bean.*" %>

@@ -5,10 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import com.Commerce.bean.ProductBean;
 import com.Commerce.bean.categoryBean;
 
-public class categoryDao {
+public class categoryDao implements ShoppingCartInterface {
 	private Connection con;
 	ConnectionManager conMange=new ConnectionManager();
 	

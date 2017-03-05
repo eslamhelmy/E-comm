@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1256">
-<title>Insert title here</title>
+<title>Home</title>
 </head>
 <body>
 
@@ -16,8 +16,5 @@
   <input type="submit" value="Register">
 </form>
 <br><br>
-<form action="productsView.jsp">
-  <input type="submit" value="view product">
-</form>
 </body>
 </html>
