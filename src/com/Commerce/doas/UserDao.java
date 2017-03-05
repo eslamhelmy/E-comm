@@ -104,6 +104,7 @@ public class UserDao implements UserInterface{
 
 
 	public int updateUser(UserBean updateData) {
+
 		
 	    int status=0;  
         try{  
@@ -132,6 +133,27 @@ public class UserDao implements UserInterface{
 		
 		
 		
+//=======
+//		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "Root");
+//    	con = database.getConnection();
+//    	try {
+//    		String sql="update ecommerce.users set Full_Name=?,Email=?,Password=?,Date_of_birth=?,job=?,credit_card=? where ID=?";
+//			PreparedStatement p=con.prepareStatement(sql);
+//			p.setString(1, updateData.getFullName());
+//			p.setString(2, updateData.getEmail());
+//			p.setString(3, updateData.getPassword());
+//			p.setString(4, updateData.getDateOfBirth());
+//			p.setString(5, updateData.getJob());
+//			p.setDouble(6, updateData.getCreditNumber());
+//			p.setInt(7, updateData.getId());
+//			executeUpdate = p.executeUpdate();
+//			p.close();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return executeUpdate2;
+//>>>>>>> Stashed changes
 	}
 	
 	
