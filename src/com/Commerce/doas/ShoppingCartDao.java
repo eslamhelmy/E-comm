@@ -3,9 +3,10 @@ package com.Commerce.doas;
 import java.sql.*;
 
 import com.Commerce.bean.ShoppingCartBean;
+import com.Commerce.bean.categoryBean;
 
 
-public class ShoppingCartDao {
+public class ShoppingCartDao implements ShoppingCartInterface{
 	
 	private Connection con;
 	ConnectionManager conMange=new ConnectionManager();
@@ -24,7 +25,8 @@ public class ShoppingCartDao {
 	        con.close();  
 	    }catch(Exception e){System.out.println(e);}  
 	    return status;  
-	}  
+	}
+
 	
 	
 	

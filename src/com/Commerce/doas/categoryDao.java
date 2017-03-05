@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import com.Commerce.bean.categoryBean;
 
-public class categoryDao implements ShoppingCartInterface {
+public class categoryDao  {
 	private Connection con;
 	ConnectionManager conMange=new ConnectionManager();
 	

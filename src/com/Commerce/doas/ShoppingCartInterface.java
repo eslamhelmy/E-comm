@@ -1,9 +1,11 @@
 package com.Commerce.doas;
 
+import com.Commerce.bean.ShoppingCartBean;
 import com.Commerce.bean.categoryBean;
 
 public interface ShoppingCartInterface {
 	
-	int insertCategory(categoryBean category);
+	
+	public  int addToShoppingCart(ShoppingCartBean shopingCart);
 
 }
