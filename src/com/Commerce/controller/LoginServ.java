@@ -43,8 +43,10 @@ public class LoginServ extends HttpServlet {
 		lr.setPassword(password);
 		UserDao ud=new UserDao();
 		userbean = ud.login(lr);
+		
+		
 		if(userbean.getFullName()!=null){
-			request.getSession().setAttribute("userData", userbean);
+			request.getSession(true).setAttribute("userData", userbean);
 			response.sendRedirect("Welcome");
 		}
 		else{

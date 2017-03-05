@@ -1,6 +1,8 @@
 package com.Commerce.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,56 +24,54 @@ public class EditProfile extends HttpServlet {
 	private String dateBirth;
 	private String job;
 	private int updateUser=0;
-	private RegisterReq userData;
+	private UserBean userData;
 	private int id;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//receive parameters
+		PrintWriter out=response.getWriter();
 		fullName = request.getParameter("fullName");
 		email = request.getParameter("email");
 		password = request.getParameter("password");
 		creditCard = request.getParameter("creditcard");
 		dateBirth = request.getParameter("dateofbirth");
 		job = request.getParameter("job");
-		//print data
-//		response.getWriter().print(fullName+" "+job);
-		//make connection
-//		ConnectionManager.getConnection();
-		//set into DTO RegisterReq
-		RegisterReq updateData=new RegisterReq();
+
+		UserBean updateData=new UserBean();
 		
 		updateData.setFullName(fullName);
 		updateData.setEmail(email);
 		updateData.setPassword(password);
 		updateData.setDateOfBirth(dateBirth);
-		updateData.setCredit(Double.parseDouble(creditCard));
+		updateData.setCreditNumber(Double.parseDouble(creditCard));
 		updateData.setJob(job);
-		userData =(RegisterReq) request.getSession(false).getAttribute("userData");
+		userData =(UserBean) request.getSession(false).getAttribute("userData");
 		id = userData.getId();
 		updateData.setId(id);
+		System.out.println(id);
 		
 		//updateData
 		UserDao us=new UserDao();
 		updateUser = us.updateUser(updateData);
-//		response.getWriter().println(updateUser);
-		if(updateUser==0){
-//			request.getSession().removeAttribute("userData");
-			request.getSession(true).setAttribute("userData", updateData);
-			response.sendRedirect("viewProfile.jsp");
+
+		if(updateUser>0){
+
+			request.getSession(true).setAttribute("userData", userData);
+
+			//response.sendRedirect("viewProfile.jsp");
+			out.print("Your Data Updated !");
+			
 		}
 		else{
 			response.getWriter().println("error in update data");
 			
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
 
+		
+		
+		
+	//}
+
+}
 }

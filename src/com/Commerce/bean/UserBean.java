@@ -17,6 +17,8 @@ public class UserBean {
 		return "password : " + password + " fullName :" + fullName + " dateOfBirth :" + dateOfBirth + " email :"
 				+ email + " job :" + job + " creditNumber :" + creditNumber ;
 	}
+	
+	
 	public int getId() {
 		return id;
 	}

@@ -15,6 +15,8 @@ public class UserDao implements UserInterface{
 
 	ConnectionManager connManager=new ConnectionManager();
 	private int executeUpdate;
+	private Statement createStatement;
+	private int executeUpdate2;
 
 
 	public  int save(UserBean userBean){  
@@ -59,7 +61,7 @@ public class UserDao implements UserInterface{
 					userbean.setPassword(resultSet.getString("Password"));
 					userbean.setJob(resultSet.getString("job"));
 					userbean.setCreditNumber(resultSet.getDouble("credit_card"));
-					
+					userbean.setId(resultSet.getInt("ID"));
 //					lrs.setUserName(resultSet.getString("Full Name"));
 					break;
 					}
@@ -100,24 +102,36 @@ public class UserDao implements UserInterface{
 
 
 
-	public int updateUser(RegisterReq updateData) {
-		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "admin");
-    	con = database.getConnection();
-    	try {
-			PreparedStatement p=con.prepareStatement("update ecommerce.users set Full_Name=?,Email=?,Password=?,Date_of_birth=?,job=?,credit_card=? where ID=?");
-			p.setString(1, updateData.getFullName());
-			p.setString(2, updateData.getEmail());
-			p.setString(3, updateData.getPassword());
-			p.setString(4, updateData.getDateOfBirth());
-			p.setString(5, updateData.getJob());
-			p.setDouble(6, updateData.getCredit());
-			p.setInt(7, updateData.getId());
-			executeUpdate = p.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return executeUpdate;
+
+	public int updateUser(UserBean updateData) {
+		
+	    int status=0;  
+        try{  
+             con=connManager.getConnection();  
+            PreparedStatement ps=con.prepareStatement(  
+                   "update users set password=?,Full_Name=?,Date_of_birth=?,Email=?,job=?,credit_card=? where ID=?");  
+            
+     
+	        ps.setString(1,updateData.getPassword()); 
+	        ps.setString(2, updateData.getFullName());
+	        ps.setDate(3,java.sql.Date.valueOf(updateData.getDateOfBirth()));
+	        ps.setString(4,updateData.getEmail());
+	        ps.setString(5, updateData.getJob());
+	        ps.setDouble(6, updateData.getCreditNumber());
+	        ps.setInt(7,updateData.getId());
+	       
+            status=ps.executeUpdate();  
+              
+            con.close();  
+        }catch(Exception ex){
+        	System.out.println(ex);
+        	ex.printStackTrace();
+        }  
+          
+        return status;  
+		
+		
+		
 	}
 	
 	
