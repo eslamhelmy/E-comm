@@ -15,6 +15,10 @@
 <form action="register.html">
   <input type="submit" value="Register">
 </form>
+
+<form action="displayUsers.jsp">
+<input type="submit" value="Display Users">
+</form>
 <br><br>
 </body>
 </html>

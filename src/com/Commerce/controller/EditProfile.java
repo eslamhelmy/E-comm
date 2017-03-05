@@ -56,7 +56,7 @@ public class EditProfile extends HttpServlet {
 
 		if(updateUser>0){
 
-			request.getSession(true).setAttribute("userData", userData);
+			request.getSession(true).setAttribute("userData", updateData);
 
 			//response.sendRedirect("viewProfile.jsp");
 			out.print("Your Data Updated !");
@@ -70,16 +70,6 @@ public class EditProfile extends HttpServlet {
 		
 
 
-//		else{
-//			response.getWriter().println("error in update data");
-//			
-//		}
-//		
-
-		
-		
-		
-	//}
 
 }
 }

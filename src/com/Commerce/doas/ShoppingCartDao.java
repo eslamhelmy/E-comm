@@ -26,7 +26,20 @@ public class ShoppingCartDao implements ShoppingCartInterface{
 	    }catch(Exception e){System.out.println(e);}  
 	    return status;  
 	}
-
+	public static int delete(int id){
+		int status=0;
+		Connection con = ConnectionManager.getConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement("delete from ecommerce.shopping_carts where user_id=?");
+			ps.setInt(1, id);
+			status = ps.executeUpdate();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return status;
+	}
+	
 	
 	
 	

@@ -7,6 +7,8 @@ import com.Commerce.dtos.*;
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao implements UserInterface{
 
@@ -15,8 +17,9 @@ public class UserDao implements UserInterface{
 
 	ConnectionManager connManager=new ConnectionManager();
 	private int executeUpdate;
-	private Statement createStatement;
+//	private Statement createStatement;
 	private int executeUpdate2;
+
 
 
 	public  int save(UserBean userBean){  
@@ -47,7 +50,7 @@ public class UserDao implements UserInterface{
 	public UserBean login(LoginReq lr){
 		
 		UserBean userbean=new UserBean();
-		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "admin");
+		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "Root");
     	con = database.getConnection();
 
 			ResultSet resultSet = database.selectData("select * from ecommerce.users");
@@ -62,6 +65,7 @@ public class UserDao implements UserInterface{
 					userbean.setJob(resultSet.getString("job"));
 					userbean.setCreditNumber(resultSet.getDouble("credit_card"));
 					userbean.setId(resultSet.getInt("ID"));
+					
 //					lrs.setUserName(resultSet.getString("Full Name"));
 					break;
 					}
@@ -109,13 +113,13 @@ public class UserDao implements UserInterface{
 	    int status=0;  
         try{  
              con=connManager.getConnection();  
-            PreparedStatement ps=con.prepareStatement(  
-                   "update users set password=?,Full_Name=?,Date_of_birth=?,Email=?,job=?,credit_card=? where ID=?");  
+             ps=con.prepareStatement( "update users set password=?,Full_Name=?,Date_of_birth=?,Email=?,job=?,credit_card=? where ID=?");  
             
      
 	        ps.setString(1,updateData.getPassword()); 
 	        ps.setString(2, updateData.getFullName());
 	        ps.setDate(3,java.sql.Date.valueOf(updateData.getDateOfBirth()));
+//	        ps.setDate(3,updateData.getDateOfBirth());
 	        ps.setString(4,updateData.getEmail());
 	        ps.setString(5, updateData.getJob());
 	        ps.setDouble(6, updateData.getCreditNumber());
@@ -130,32 +134,46 @@ public class UserDao implements UserInterface{
         }  
           
         return status;  
-		
-		
-		
-//=======
-//		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "Root");
-//    	con = database.getConnection();
-//    	try {
-//    		String sql="update ecommerce.users set Full_Name=?,Email=?,Password=?,Date_of_birth=?,job=?,credit_card=? where ID=?";
-//			PreparedStatement p=con.prepareStatement(sql);
-//			p.setString(1, updateData.getFullName());
-//			p.setString(2, updateData.getEmail());
-//			p.setString(3, updateData.getPassword());
-//			p.setString(4, updateData.getDateOfBirth());
-//			p.setString(5, updateData.getJob());
-//			p.setDouble(6, updateData.getCreditNumber());
-//			p.setInt(7, updateData.getId());
-//			executeUpdate = p.executeUpdate();
-//			p.close();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return executeUpdate2;
-//>>>>>>> Stashed changes
-	}
 	
+	}
+	public static List<UserBean> getAllUsers(){
+		List<UserBean> users=new ArrayList<UserBean>();
+//		UserBean us=new UserBean(); why i get redudancy if i put it here
+		Connection con = ConnectionManager.getConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement("select * from ecommerce.users");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				UserBean us=new UserBean();
+				us.setId(rs.getInt(1));
+				us.setFullName(rs.getString(3));
+				us.setEmail(rs.getString(5));
+				us.setPassword(rs.getString(2));
+				us.setDateOfBirth(rs.getString(4));
+				us.setCreditNumber(rs.getDouble(8));
+				us.setJob(rs.getString(6));
+				users.add(us);
+				
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+	}
+	public static int delete(int id){
+		int status=0;
+		Connection con = ConnectionManager.getConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement("delete from ecommerce.users where id=?");
+			ps.setInt(1, id);
+			status = ps.executeUpdate();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return status;
+	}
 	
 	
 	

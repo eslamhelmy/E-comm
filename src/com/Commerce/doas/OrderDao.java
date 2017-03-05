@@ -61,6 +61,19 @@ public class OrderDao  implements OrderInterface{
         return list;  
 	}
 	
+	public static int delete(int id){
+		int status=0;
+		Connection con = ConnectionManager.getConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement("delete from ecommerce.orders where user_id=?");
+			ps.setInt(1, id);
+			status = ps.executeUpdate();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return status;
+	}
 	
 	
 }
