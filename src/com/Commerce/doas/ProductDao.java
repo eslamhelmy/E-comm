@@ -99,5 +99,23 @@ public class ProductDao implements ProductInterface{
 		
 	}
 	
+	 public  int UpdateProductQuantity(int productID,int newQuantity){  
+	        int status=0;  
+	        try{  
+	        	con=conMange.getConnection();  
+	            PreparedStatement ps=con.prepareStatement(  
+	                         "update products set Quantity=? where product_id=?");  
+	            ps.setInt(1,newQuantity);  
+	            ps.setInt(2,productID);  
+	              
+	            status=ps.executeUpdate();  
+	              
+	            con.close();  
+	            
+	        }catch(Exception ex){ex.printStackTrace();}  
+	          
+	        return status;  
+	    }  
+	
 
 }

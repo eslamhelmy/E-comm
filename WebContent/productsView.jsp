@@ -50,7 +50,10 @@ ProductDao productdao=new ProductDao();
 
 </table>
 
-
+<br><br>
+  <form action="ShoppingCart.jsp">
+   		 	  <input type="submit" name="details" value="Go to your Shopping Cart" />
+  </form>
 
 </body>
 </html>

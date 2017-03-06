@@ -9,7 +9,7 @@ public class ConnectionManager {
 		Connection con=null;
 	    try{  
 	        Class.forName("com.mysql.jdbc.Driver");  
-	        con=DriverManager.getConnection("jdbc:mysql://localhost/ecommerce","root","Root");  
+	        con=DriverManager.getConnection("jdbc:mysql://localhost/ecommerce","root","admin");  
 	    }catch(Exception e){System.out.println(e);}  
 	    return con;  
 	} 

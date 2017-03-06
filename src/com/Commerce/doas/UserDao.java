@@ -50,7 +50,7 @@ public class UserDao implements UserInterface{
 	public UserBean login(LoginReq lr){
 		
 		UserBean userbean=new UserBean();
-		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "Root");
+		DBUtil database=new DBUtil("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/ecommerce", "root", "admin");
     	con = database.getConnection();
 
 			ResultSet resultSet = database.selectData("select * from ecommerce.users");
@@ -178,7 +178,23 @@ public class UserDao implements UserInterface{
 		return status;
 	}
 	
-	
+	 public  int UpdateCredit(int productID,double newCredit){  
+	        int status=0;  
+	        try{  
+	        	  con=connManager.getConnection();   
+	            PreparedStatement ps=con.prepareStatement(  
+	                         "update users set credit_card=? where ID=?");  
+	            ps.setDouble(1,newCredit);  
+	            ps.setInt(2,productID);  
+	              
+	            status=ps.executeUpdate();  
+	              
+	            con.close();  
+	            
+	        }catch(Exception ex){ex.printStackTrace();}  
+	          
+	        return status;  
+	    }  
 	
 	
 }

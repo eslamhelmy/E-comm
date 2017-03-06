@@ -43,6 +43,7 @@ public class AddToShoppingCart extends HttpServlet {
 		userbean =(UserBean) request.getSession(false).getAttribute("userData");
 		int userId=userbean.getId();    // user Id
 		System.out.println(userId);
+		
 		int productId=Integer.parseInt(request.getParameter("idProduct")); // product Id
 		System.out.println(productId);
 
@@ -74,17 +75,16 @@ public class AddToShoppingCart extends HttpServlet {
 	
 	
 	if(status>0){
-		out.print("<h1> Product Added To Shopping Cart !.<h1>");
+		//out.print("<h1> Product Added To Shopping Cart !.<h1>");
+		
+		request.getRequestDispatcher("Welcome").include(request, response);
+
 	}
   else{  
 	  
      out.println("Sorry! unable to add to ShoppingCart !");  
   
  }
-	
-	
-	
-	
 	
 	
 	}

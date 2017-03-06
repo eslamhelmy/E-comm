@@ -75,5 +75,42 @@ public class OrderDao  implements OrderInterface{
 		return status;
 	}
 	
+	public  int deleteOrderById(int id){
+		int status=0;
+		con=conMange.getConnection();  
+		try {
+			PreparedStatement ps = con.prepareStatement("delete from orders where product_id=?");
+			ps.setInt(1, id);
+			status = ps.executeUpdate();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return status;
+	}
+	
+	
+	 public  int UpdateQuantity(int productID,int newQuantity){  
+	        int status=0;  
+	        try{  
+	        	con=conMange.getConnection();  
+	            PreparedStatement ps=con.prepareStatement(  
+	                         "update orders set Quantity=? where product_id=?");  
+	            ps.setInt(1,newQuantity);  
+	            ps.setInt(2,productID);  
+	              
+	            status=ps.executeUpdate();  
+	              
+	            con.close();  
+	            
+	        }catch(Exception ex){ex.printStackTrace();}  
+	          
+	        return status;  
+	    }  
+	
+	
+	
+	
+	
 	
 }

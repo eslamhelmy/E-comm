@@ -34,21 +34,32 @@ OrderDao orderdao=new OrderDao();
 		
 	</tr>
 
-
 <c:forEach items="${order}" var="current">
         <tr>
           <td><c:out value="${current.productName}" /></td>
           <td><img width="100" height="100" src="<c:out value="${current.imgPath}" />"></img></td>
           <td><c:out value="${current.price}" /></td>
-          <td><c:out value="${current.quntity}" /></td>
-       
+          <td>
+          <form action="EditQuntityServlet">
+    		  <input type="number" name="quntity" min="1" max="500" value="${current.quntity}" />
+    		  <input type="hidden" name="idProduct" value="${current.productId}" />
+   		 	  <input type="submit" name="details" value="Edit Quantity" />
+		 </form>
+          
+          </td>
+     	  <td>
+        	  <form action="DeleteOrderServlet">
+    		  <input type="hidden" name="idProduct" value="${current.productId}" />
+   		 	  <input type="submit" name="details" value="Delete" />
+			  </form>
+         </td>
         </tr>
  </c:forEach>
 
 </table>
 
  
-        	  <form action="">
+        	  <form action="CheckOut">
     		  
    		 	  <input type="submit" name="details" value="Check Out" />
 
