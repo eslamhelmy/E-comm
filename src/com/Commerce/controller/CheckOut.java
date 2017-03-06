@@ -88,6 +88,8 @@ public class CheckOut extends HttpServlet {
 						 
 						 if(listOrder.get(i).getQuntity()>listProduct.get(j).getQuantity() ){
 							 out.print("<h1>Sorry this Quantity Not availabe !</h1>");
+							 System.out.println("Nottttttt");
+							 return;
 						 }
 						
 						 else{
