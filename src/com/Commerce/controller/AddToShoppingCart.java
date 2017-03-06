@@ -17,27 +17,12 @@ import com.Commerce.doas.OrderDao;
 import com.Commerce.doas.ProductDao;
 import com.Commerce.doas.ShoppingCartDao;
 
-/**
- * Servlet implementation class AddToShoppingCart
- */
 @WebServlet("/AddToShoppingCart")
 public class AddToShoppingCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddToShoppingCart() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+
 		PrintWriter out=response.getWriter();
 		UserBean userbean=new UserBean();
 		userbean =(UserBean) request.getSession(false).getAttribute("userData");

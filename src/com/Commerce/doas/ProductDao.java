@@ -2,6 +2,7 @@ package com.Commerce.doas;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.Commerce.bean.ProductBean;
 
@@ -11,9 +12,9 @@ public class ProductDao implements ProductInterface{
 	private Connection con;
 	
 	
-	public ArrayList<ProductBean> getProductList() {
+	public List<ProductBean> getProductList() {
 	
-		ArrayList<ProductBean> list=new ArrayList<ProductBean>();  
+		List<ProductBean> list=new ArrayList<ProductBean>();  
         
         try{  
             Connection con=conMange.getConnection();  
@@ -94,8 +95,19 @@ public class ProductDao implements ProductInterface{
 	}
 
 	@Override
-	public void deleteProduct(ProductBean product) {
-		// TODO Auto-generated method stub
+	public int deleteProduct(int id) {
+		int status=0;
+		Connection con = ConnectionManager.getConnection();
+		try {
+			PreparedStatement ps = con.prepareStatement("delete from ecommerce.products where product_id=?");
+			ps.setInt(1, id);
+			status = ps.executeUpdate();
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return status;
+
 		
 	}
 	
@@ -117,5 +129,22 @@ public class ProductDao implements ProductInterface{
 	        return status;  
 	    }  
 	
-
+	 public int updateProduct(ProductBean product){
+		 int status=0;
+		 Connection con = ConnectionManager.getConnection();
+		 try {
+			PreparedStatement ps = con.prepareStatement("update products set name=?,price=?,Quantity=?,category_id=? where product_id=?");
+			ps.setString(1, product.getProductName());
+			ps.setFloat(2, (float)product.getPrice());
+			ps.setInt(3, product.getQuantity());
+			ps.setInt(4, product.getCategoryId());
+			ps.setInt(5, product.getProductId());
+			status=ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 return status;
+		 
+	 }
 }

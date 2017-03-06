@@ -11,12 +11,14 @@
 <title>Product View</title>
 </head>
 <body>
+<%@ paage import="java.util.List" %>
+<%@ page import="com.Commerce.bean.*" %>
 <h1>All Product</h1>
 
 <%
 ProductDao productdao=new ProductDao();
 
- ArrayList <ProductBean> list=productdao.getProductList();
+ List <ProductBean> list=productdao.getProductList();
  
  
  request.setAttribute("products",list);

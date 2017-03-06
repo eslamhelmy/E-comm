@@ -19,6 +19,10 @@
 <form action="displayUsers.jsp">
 <input type="submit" value="Display Users">
 </form>
+
+<form action="viewProducts.jsp">
+<input type="submit" value="View Products">
+</form>
 <br><br>
 </body>
 </html>

@@ -77,7 +77,6 @@ public class UserDao implements UserInterface{
 		
 		return userbean;
 		
-		
 	}
 
 	public boolean LoginValidate(LoginReq loginrequest){
