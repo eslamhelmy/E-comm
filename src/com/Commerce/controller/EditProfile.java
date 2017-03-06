@@ -63,11 +63,19 @@ public class EditProfile extends HttpServlet {
 			out.print("Your Data Updated !");
 			
 		}
+
 		else{
-			response.getWriter().println("error in update data");
+			response.getWriter().println("error in updating data");
 			
 		}
 		
+
+
+//		else{
+//			response.getWriter().println("error in update data");
+//			
+//		}
+//		
 
 		
 		
