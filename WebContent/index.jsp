@@ -24,5 +24,10 @@
 <input type="submit" value="View Products">
 </form>
 <br><br>
+
+           <form action="SearchServlet">
+    		  <input type="text" name="searchKey" />
+   		 	  <input type="submit"  value="Search" />
+			  </form>
 </body>
 </html>

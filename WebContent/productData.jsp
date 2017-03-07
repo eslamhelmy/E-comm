@@ -20,7 +20,8 @@ ProductBean product=(ProductBean) request.getAttribute("productData");
 <%=product.getInStock() %><br>
 <%=product.getCategoryId() %><br>
 <%=product.getDescription() %><br>
-<%=product.getImgPath() %>
+
+<img width="100" height="100" src="<%=product.getImgPath() %>"></img>
 </td>
 </tr>
 

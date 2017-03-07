@@ -3,6 +3,7 @@ package com.Commerce.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,7 +43,7 @@ public class CheckOut extends HttpServlet {
 		//request.getRequestDispatcher("ShoppingCart.jsp").forward(request, response);
 		ProductDao productdao=new ProductDao();
 		
-		 ArrayList <ProductBean> listProduct=productdao.getProductList(); //all product
+		 List <ProductBean> listProduct=productdao.getProductList(); //all product
 		 
 		UserBean userData =(UserBean) request.getSession(false).getAttribute("userData");
 		
