@@ -24,13 +24,6 @@ import java.io.OutputStream;
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddProductServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
     public String getPathImg(String pathImg){
     	String replaceString=pathImg.replace('\\','/');
@@ -40,9 +33,6 @@ public class AddProductServlet extends HttpServlet {
 		 s = s.concat(ss);
 		 return s;
 	}
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
     final static String IMAGE_RESOURCE_PATH = "/WebContent/imgs";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

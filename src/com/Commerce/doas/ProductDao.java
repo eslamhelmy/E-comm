@@ -147,4 +147,20 @@ public class ProductDao implements ProductInterface{
 		 return status;
 		 
 	 }
+	 public static int deleteProductByCategory(int id) {
+			int status=0;
+			Connection con = ConnectionManager.getConnection();
+			try {
+				PreparedStatement ps = con.prepareStatement("delete from ecommerce.products where category_id=?");
+				ps.setInt(1, id);
+				status = ps.executeUpdate();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return status;
+
+			
+		}
+
 }
