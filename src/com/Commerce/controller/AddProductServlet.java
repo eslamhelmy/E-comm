@@ -43,7 +43,6 @@ public class AddProductServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    final static String IMAGE_RESOURCE_PATH = "/WebContent/imgs";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -74,17 +73,18 @@ public class AddProductServlet extends HttpServlet {
 		 //write image
 	    String name=nameProduct+".jpg";
 		File directory=null;
+		  String IMAGE_RESOURCE_PATH="";
 	    try{
 	    	//String filePath = getServletContext().getInitParameter("file-upload"); 
 		   
 	    	//File fi = new File(filePath+nameProduct);
 	    	
-	    	final  String IMAGE_RESOURCE_PATH = "/WebContent/imgs";
-	    	String directoryPath = 
-	    	        getServletContext().getRealPath(IMAGE_RESOURCE_PATH + "/" + name);
+	    	 IMAGE_RESOURCE_PATH = "C:/Users/samar/Desktop/New folder/E-comm/WebContent/img/"+name;
+	    	//String directoryPath = 
+	    	    //    getServletContext().getRealPath(IMAGE_RESOURCE_PATH + "/" + name);
 	    	
-	    	 directory = new File(directoryPath);
-	    	System.out.println(directory.mkdirs());
+	    	 directory = new File(IMAGE_RESOURCE_PATH);
+	    	//System.out.println(directory.mkdirs());
 
 	      ImageIO.write(image, "jpg",directory );
 	      System.out.println("Writing complete.");
@@ -92,7 +92,7 @@ public class AddProductServlet extends HttpServlet {
 	      System.out.println("Error: "+e);
 	    }
 		
-		
+	    String pathImage=getPathImg(IMAGE_RESOURCE_PATH);
 		
 		String inStock=request.getParameter("stock");
 		String descrption=request.getParameter("productDesc");
@@ -101,7 +101,7 @@ public class AddProductServlet extends HttpServlet {
 		product.setProductName(nameProduct);
 		product.setPrice(price);
 		product.setQuantity(quant);
-		product.setImgPath(directory.toString());
+		product.setImgPath(pathImage);
 		product.setInStock(inStock);
 		product.setDescription(descrption);
 		product.setCategoryId(cateID);

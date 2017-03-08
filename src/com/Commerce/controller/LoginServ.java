@@ -3,6 +3,7 @@ package com.Commerce.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,7 +51,10 @@ public class LoginServ extends HttpServlet {
 			response.sendRedirect("Welcome");
 		}
 		else{
-			out.println("Not Registered");
+		//	out.println("Not Registered");
+
+			 RequestDispatcher rd=request.getRequestDispatcher("/signUpNotRegister.jsp");  
+		        rd.forward(request, response);
 		}
 	}
 

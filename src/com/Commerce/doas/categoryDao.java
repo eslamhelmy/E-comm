@@ -34,7 +34,7 @@ public class categoryDao  {
 		ArrayList<categoryBean> list=new ArrayList<categoryBean>();  
         
         try{  
-            Connection con=conMange.getConnection();  
+            Connection con=ConnectionManager.getConnection();  
             PreparedStatement ps=con.prepareStatement("select * from categories");  
             ResultSet rs=ps.executeQuery();  
             while(rs.next()){  
