@@ -28,6 +28,7 @@ public class HomeServlet extends HttpServlet {
     }
 
 	/**
+	 * *fdfdh
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
