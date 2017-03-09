@@ -68,6 +68,13 @@ public class UserBean {
 		this.isAdmin = isAdmin;
 	}
 
+	public String getAdmin() {
+	    return this.isAdmin.name();
+	}
+
+	public void setAdmin(String isAdmin) {
+	    this.isAdmin = AdminEnum.valueOf(isAdmin);
+	}
 
 		
 	

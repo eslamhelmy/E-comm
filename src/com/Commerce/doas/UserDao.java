@@ -65,6 +65,7 @@ public class UserDao implements UserInterface{
 					userbean.setJob(resultSet.getString("job"));
 					userbean.setCreditNumber(resultSet.getDouble("credit_card"));
 					userbean.setId(resultSet.getInt("ID"));
+					userbean.setAdmin(resultSet.getString("is_admin"));
 					
 //					lrs.setUserName(resultSet.getString("Full Name"));
 					break;
