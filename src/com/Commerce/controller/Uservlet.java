@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.Commerce.UserValidate;
 import com.Commerce.bean.AdminEnum;
 import com.Commerce.bean.UserBean;
 import com.Commerce.doas.UserDao;
@@ -42,8 +43,10 @@ public class Uservlet extends HttpServlet {
 		PrintWriter out=response.getWriter(); 
 		UserBean userBean= new UserBean();  
 		 AdminEnum adminenum = null;
-
-				 String name=request.getParameter("uname");  
+		 UserValidate uservalid=new UserValidate();
+				 String name=request.getParameter("uname"); 
+				 
+					
 				 String password=request.getParameter("psw");
 				 String birthDate=request.getParameter("bdate");
 				 String eMail=request.getParameter("email");
@@ -59,23 +62,27 @@ public class Uservlet extends HttpServlet {
 				userBean.setCreditNumber(credit);
 			    userBean.setIsAdmin(adminenum.normal);
 				userBean.setId(randomNum());
-				
+				if(uservalid.checkName(name)==false||uservalid.checkEmail(eMail)==false){
+					response.sendRedirect("Error.html");
+				}
+				else{
 				UserDao userDao=new UserDao();
 				int status=userDao.save(userBean);
 				
 				if(status>0){
 					request.getSession(true).setAttribute("userData", userBean);
-					out.print("<p>Record saved successfully!</p>");
+//					out.print("<p>Record saved successfully!</p>");
 					
-					response.sendRedirect("Welcome");
-					request.getRequestDispatcher("viewProfile.html").include(request, response);
+//					response.sendRedirect("Welcome");
+					request.getRequestDispatcher("Welcome").forward(request, response);
 					
 				}
 			  else{  
 				  
 		         out.println("Sorry! unable to save record");  
-		         request.getRequestDispatcher("register.html").include(request, response);  
+		         request.getRequestDispatcher("register.html").forward(request, response);  
 		     }  
 	}
 
+}
 }

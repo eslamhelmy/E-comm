@@ -26,6 +26,9 @@ public class Welcome extends HttpServlet {
 			request.getRequestDispatcher("productsView.jsp").include(request, response);
 
 		}
+		else{
+			response.sendRedirect("register.html");
+		}
 	}
 
 }

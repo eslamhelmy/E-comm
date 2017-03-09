@@ -17,9 +17,7 @@ import com.Commerce.doas.ProductDao;
 import java.io.OutputStream;
 
 
-/**
- * Servlet implementation class AddProductServlet
- */
+
 @WebServlet("/AddProductServlet")
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
