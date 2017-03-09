@@ -42,11 +42,16 @@
 <!-- //end-smooth-scrolling --> 
 </head> 
 
-	
-	<jsp:include page="UserHeader.jsp" />
-	<jsp:include page="productViewDesign.jsp" />
 
 <body>
 
+
+	
+	<jsp:include page="UserHeader.jsp" />
+	<jsp:include page="productViewDesign.jsp" />
+	<jsp:include page="footer.jsp" />
+	
+
+	
 </body>
 </html>

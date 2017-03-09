@@ -61,18 +61,22 @@ public class HomeServlet extends HttpServlet {
 				//include header user
 				RequestDispatcher rd=request.getRequestDispatcher("UserHome.jsp");
 				rd.include(request, response);
+			
+				
 			}
+			
 		}
 		else{
 			
 			//include header user
 			
 			out.print("<h4 align='right'>Welcome Guset </h4>");
-		
+			out.print("<h4 align='left'> please sign in / sign up ! </h4>");
 			
 			//include header user
 			RequestDispatcher rd=request.getRequestDispatcher("UserHome.jsp");
 			rd.include(request, response);
+		
 			
 		}
 		

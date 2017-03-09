@@ -10,7 +10,7 @@ import java.util.Random;
 
 import java.io.*;
 
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -71,10 +71,19 @@ public class Uservlet extends HttpServlet {
 				
 				if(status>0){
 					request.getSession(true).setAttribute("userData", userBean);
+
 //					out.print("<p>Record saved successfully!</p>");
 					
 //					response.sendRedirect("Welcome");
-					request.getRequestDispatcher("Welcome").forward(request, response);
+//					request.getRequestDispatcher("Welcome").forward(request, response);
+
+				//	out.print("<p>Record saved successfully!</p>");
+					
+					//response.sendRedirect("Welcome");
+					//request.getRequestDispatcher("viewProfile.html").include(request, response);
+					RequestDispatcher rd=request.getRequestDispatcher("HomeServlet");
+					rd.forward(request, response);
+
 					
 				}
 			  else{  

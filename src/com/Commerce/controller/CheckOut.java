@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -79,6 +80,8 @@ public class CheckOut extends HttpServlet {
 		 PrintWriter out=response.getWriter();
 		 //to update credit user
 		 System.out.println(total);
+		 out.print("<h2> total =  "+total+"</h2>");
+		 out.print("<h2> Your Credit =  "+credit+"</h2>");
 		 if(credit>total){
 			 //To update Product Quantity
 			 for(int i=0;i<listOrder.size();i++){
@@ -88,8 +91,10 @@ public class CheckOut extends HttpServlet {
 					 if(listProduct.get(j).getProductId()==listOrder.get(i).getProductId()){
 						 
 						 if(listOrder.get(i).getQuntity()>listProduct.get(j).getQuantity() ){
-							 out.print("<h1>Sorry this Quantity Not availabe !</h1>");
-							 System.out.println("Nottttttt");
+							 out.print("<h1>Sorry this Quantity of  "+listProduct.get(j).getProductName()+" Not availabe !</h1>");
+							  RequestDispatcher rd=request.getRequestDispatcher("ShoppingCartDesign.jsp");
+								rd.include(request, response);
+							
 							 return;
 						 }
 						
@@ -118,11 +123,14 @@ public class CheckOut extends HttpServlet {
 		//////////////////////////////
 		 else{
 		 			out.print("<h1>Sorry Your order greater than Your Credit!</h1>");
+		 			  RequestDispatcher rd=request.getRequestDispatcher("ShoppingCartDesign.jsp");
+						rd.include(request, response);
 		 }
 		
 		if(deleteorder>0){
 		
-			request.getRequestDispatcher("AfterCheckOut.jsp").forward(request, response);
+			request.getRequestDispatcher("CheckOutt.jsp").include(request, response);
+			out.print("<a href='LogOut'  style='float:left'><h4>logOut</h4></a><br>");
 		}
 		else{
 			response.getWriter().print("<br>Error to Check Out !");

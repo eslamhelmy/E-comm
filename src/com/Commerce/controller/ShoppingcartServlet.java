@@ -44,7 +44,11 @@ public class ShoppingcartServlet extends HttpServlet {
 		}
 		else
 		{
-			out.print("Not member !");
+			//out.print("Not member !");
+			RequestDispatcher rd=request.getRequestDispatcher("HomeServlet");
+			rd.forward(request, response);
+		
+			
 		}
 		
 		
