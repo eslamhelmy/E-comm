@@ -26,8 +26,13 @@ public class AddToShoppingCart extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		UserBean userbean=new UserBean();
 		userbean =(UserBean) request.getSession(false).getAttribute("userData");
-		int userId=userbean.getId();    // user Id
+		
+		if(userbean !=null){
+		int userId=0;
+		userId=userbean.getId();    // user Id
 		System.out.println(userId);
+		
+		
 		
 		int productId=Integer.parseInt(request.getParameter("idProduct")); // product Id
 		System.out.println(productId);
@@ -54,6 +59,8 @@ public class AddToShoppingCart extends HttpServlet {
 	orderObj.setPrice(productObj.getPrice());
 	orderObj.setProductName(productObj.getProductName());
 	
+	
+	
 	int status=orderDaoObj.addOrder(orderObj);
 	
 	
@@ -62,17 +69,20 @@ public class AddToShoppingCart extends HttpServlet {
 	if(status>0){
 		//out.print("<h1> Product Added To Shopping Cart !.<h1>");
 		
-		request.getRequestDispatcher("Welcome").include(request, response);
+		request.getRequestDispatcher("HomeServlet").include(request, response);
 
 	}
+		}
   else{  
 	  
-     out.println("Sorry! unable to add to ShoppingCart !");  
+     out.println("Sorry! unable to add to ShoppingCart !  sign in or up first!");  
+     
+    //include home 
   
  }
 	
+		}
 	
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

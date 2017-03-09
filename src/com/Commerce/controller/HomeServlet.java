@@ -31,32 +31,48 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-
-		// RequestDispatcher rd=request.getRequestDispatcher("/index.html");  
-	     //   rd.include(request, response);
+		
 		PrintWriter out=response.getWriter();
 		HttpSession session=request.getSession();
-		AdminEnum adminEnum=null;
-		if(session !=null){
-			UserBean userbean=(UserBean) session.getAttribute("userData");
-			
-		System.out.println(userbean.getAdmin());
-			if(userbean.getAdmin().equals(adminEnum.admin)){
-				out.print("Welcome "+userbean.getFullName());
+		
+		UserBean userbean=new UserBean();
+		userbean =(UserBean) request.getSession(false).getAttribute("userData");
+		
+		
+		if(userbean !=null){
+		
+			String name=userbean.getFullName();
+		//	System.out.println(userbean.getAdmin());
+
+		//	if(userbean.getAdmin().equals(adminEnum.admin)){
+			if(name.equals("admin")){
+				//out.print("Welcome "+userbean.getFullName());
+				out.print("<h4 align='right'>Welcome  "+userbean.getFullName()+"</h4>");
+				out.print("<a href='LogOut'  style='float:right'><h4>logOut</h4></a><br>");
+				
 				//include header admin
 			}
 			
 			else
 			{
-				out.print("Welcome "+userbean.getFullName());
+				out.print("<h4 align='right'>Welcome  "+userbean.getFullName()+"</h4>");
+				out.print("<a href='LogOut'  style='float:right'><h4>logOut</h4></a><br>");
+				
 				//include header user
+				RequestDispatcher rd=request.getRequestDispatcher("UserHome.jsp");
+				rd.include(request, response);
 			}
 		}
 		else{
-			out.print("Welcome Guset");
+			
 			//include header user
+			
+			out.print("<h4 align='right'>Welcome Guset </h4>");
+		
+			
+			//include header user
+			RequestDispatcher rd=request.getRequestDispatcher("UserHome.jsp");
+			rd.include(request, response);
 			
 		}
 		

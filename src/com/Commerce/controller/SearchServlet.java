@@ -48,7 +48,7 @@ public class SearchServlet extends HttpServlet {
 			 System.out.println(searchResult.get(i).getProductName());
 			
 			}
-		request.getRequestDispatcher("Search.jsp").forward(request, response);
+		request.getRequestDispatcher("SearchDesign.jsp").forward(request, response);
 		}
 		
 		else{

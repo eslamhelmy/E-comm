@@ -38,8 +38,6 @@ public class LoginServ extends HttpServlet {
 		out = response.getWriter();
 		LoginReq lr=new LoginReq();
 		//receive parameters
-		
-		
 	    email = request.getParameter("email");
 		password = request.getParameter("password");
 		lr.setEmail(email);	
@@ -50,9 +48,9 @@ public class LoginServ extends HttpServlet {
 		
 		if(userbean.getFullName()!=null){
 			request.getSession(true).setAttribute("userData", userbean);
-			response.sendRedirect("HomeServlet");
-			//RequestDispatcher rd=request.getRequestDispatcher("HomeServlet");
-			//rd.forward(request, response);
+			//response.sendRedirect("HomeServlet");
+			RequestDispatcher rd=request.getRequestDispatcher("HomeServlet");
+			rd.forward(request, response);
 			
 		}
 		else{

@@ -30,8 +30,7 @@ public class EditQuntityServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		PrintWriter out=response.getWriter();
 		int productId=Integer.parseInt(request.getParameter("idProduct"));
 		int newQuantity=Integer.parseInt(request.getParameter("quntity"));
@@ -40,7 +39,7 @@ public class EditQuntityServlet extends HttpServlet {
 		int status=orderdao.UpdateQuantity(productId, newQuantity);
 		if(status>0){
 			//out.print("<h1> Product Added To Shopping Cart !.<h1>");
-			request.getRequestDispatcher("ShoppingCart.jsp").include(request, response);
+			request.getRequestDispatcher("ShoppingCartDesign.jsp").include(request, response);
 
 		}
 	  else{  
