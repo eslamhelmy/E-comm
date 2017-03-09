@@ -10,6 +10,7 @@
 <%@ page import="com.Commerce.doas.*" %>
 <%@ page import="com.Commerce.bean.*" %>
 <%@ page import="java.util.List" %>
+<jsp:include page="headerAdmin.jsp"></jsp:include>
 <%
 List<UserBean> users=UserDao.getAllUsers();
 %>

@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-    	
+    <jsp:include page="headerAdmin.jsp"></jsp:include>	
   <%
     	categoryBean category=new categoryBean();
     	categoryDao categDao=new categoryDao();
@@ -29,7 +29,7 @@
 	<center>
 <form class="formLogin" action="AddProductServlet" >
 
-  <div class="container">
+  <div class="container-fluid">
     
     <label><b>  Name </b></label>
     <input type="text" placeholder="Enter Name product" name="productName" required/>
@@ -72,6 +72,6 @@
   </div>
 </form>
 </center>
-
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

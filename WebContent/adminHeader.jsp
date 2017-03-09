@@ -180,7 +180,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<!-- Mega Menu -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle act" data-toggle="dropdown" >Products <b class="caret"></b></a>
-							<ul class="dropdown-menu multi-column columns-3">
+							<ul class="dropdown-menu">
+								<li><a href="viewProducts.jsp">View</a></li>
+								    
+							</ul>
+							
+							
+							
+							<!-- <ul class="dropdown-menu multi-column columns-3">
 								<div class="row">
 									<div class="col-sm-3">
 										<ul class="multi-column-dropdown">
@@ -206,7 +213,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									
 									<div class="clearfix"></div>
 								</div>
-							</ul>
+							</ul>-->
 						</li>
 						<li><a href="about.html">About Us</a></li> 
 						<li class="w3pages"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>

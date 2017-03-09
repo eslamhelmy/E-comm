@@ -8,6 +8,7 @@
 </head>
 <body>
 <%@ page import="com.Commerce.bean.*" %>
+
 <%ProductBean product=(ProductBean)request.getAttribute("sendproduct"); %>
 <%=product.getProductName() %>
 <form action="EditChangesProduct">

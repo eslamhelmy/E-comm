@@ -8,6 +8,7 @@
 </head>
 <body bgcolor="powderblue">
 <%@ page import="com.Commerce.bean.*" %>
+<jsp:include page="headerAdmin.jsp" />
 <%
 UserBean us=(UserBean)request.getSession(false).getAttribute("userData");
 if(us!=null){

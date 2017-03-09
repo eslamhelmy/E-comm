@@ -10,8 +10,10 @@
 <body>
 <%@ page import="com.Commerce.bean.*" %>
 <%@ page import="java.util.List" %>
-<%
+<jsp:include page="headerAdmin.jsp"></jsp:include>
+<% 
 ProductDao productDao=new ProductDao();
+
 List<ProductBean> products=productDao.getProductList();
 %>
 <table cellspacing="5" cellpadding="5" border="1">
@@ -40,7 +42,7 @@ for(ProductBean product:products){
 <td><%=product.getCategoryId() %></td>
 <!-- <td><%=product.getDescription() %></td> -->
 <td><form action="ViewProduct"><input type="hidden" name="id" value=<%=product.getProductId() %>>
-	<input type="submit" value="view"></form></td>
+	<input type="submit" value="viewDetials"></form></td>
 <td><form action="DeleteProduct">
 <input type="hidden" name="id" value=<%=product.getProductId() %>>
 	<input type="submit" value="Delete"></form></td>
@@ -52,5 +54,6 @@ for(ProductBean product:products){
 }
 %>
 </table>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

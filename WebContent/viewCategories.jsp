@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="headerAdmin.jsp"></jsp:include>
 <%@ page import="com.Commerce.doas.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.Commerce.bean.*" %>
@@ -49,5 +50,6 @@ for(categoryBean cb:list){
 
 
 </table>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
