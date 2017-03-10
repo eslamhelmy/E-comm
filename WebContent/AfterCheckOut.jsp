@@ -10,7 +10,7 @@
 
 <h1> Your Order done</h1>
 
- <form action="Welcome">
+ <form action="HomeServlet">
    		 	  <input type="submit" name="details" value="Shop Again!" />
   </form>
 
